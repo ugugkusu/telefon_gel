@@ -1,0 +1,29 @@
+<style>
+    body {
+        background-color: #000;
+        width: 100%;
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .text {
+        color: #fff;
+        font-size: 180px;
+        width: 100%;
+    }
+</style>
+
+
+<marquee class="text" scrolldelay="5">0539 244 5519</marquee>
+
+<script>
+    let num = window.prompt("sometext","Telefon Numarası Gir");
+    if (num == null || num == "") {
+        text = "User cancelled the prompt.";
+    } else {
+        const div = document.querySelector(".text")
+        div.textContent = num
+    }
+
+</script>
