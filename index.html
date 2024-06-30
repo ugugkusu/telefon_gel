@@ -15,5 +15,15 @@
 </style>
 
 
-<marquee class="text" scrolldelay="5">fuck me</marquee>
+<marquee class="text" scrolldelay="5"></marquee>
 
+<script>
+    let num = window.prompt("sometext","Telefon Numarası Gir");
+    if (num == null || num == "") {
+        text = "User cancelled the prompt.";
+    } else {
+        const div = document.querySelector(".text")
+        div.textContent = num
+    }
+
+</script>
