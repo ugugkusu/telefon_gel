@@ -1,4 +1,10 @@
 <style>
+    * {
+        padding: 0px;
+        margin: 0px;
+        box-sizing: border-box;
+    }
+
     body {
         background-color: #000;
         width: 100%;
@@ -6,24 +12,115 @@
         display: flex;
         align-items: center;
         justify-content: center;
+        position: relative;
+        color: #ffff;
     }
+
     .text {
         color: #fff;
         font-size: 180px;
         width: 100%;
     }
+
+    .settings {
+        width: 100%;
+        max-width: 720px;
+        background-color: #212121;
+        position: absolute;
+        top: 16px;
+        margin: 0 auto;
+        min-height: 400px;
+        border-radius: 16px;
+        padding: 32px;
+        display: none;
+    }
+
+    .settings input {
+        height: 40px;
+        padding: 0 24px;
+    }
+
+    .settings label {
+        font-size: 20px;
+        font-weight: 600;
+    }
+
+    button {
+        background-color: transparent;
+        width: 48px;
+        height: 48px;
+    }
 </style>
 
 
-<marquee class="text" scrolldelay="5">0539 244 5519</marquee>
+<button id="open-settings" onclick="showSettings()"
+    style="position: fixed;left: 16px; top: 16px;width: 48px; height: 48px; border-radius: 24px;background-color: #212121;">
+    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e8eaed">
+        <path
+            d="m370-80-16-128q-13-5-24.5-12T307-235l-119 50L78-375l103-78q-1-7-1-13.5v-27q0-6.5 1-13.5L78-585l110-190 119 50q11-8 23-15t24-12l16-128h220l16 128q13 5 24.5 12t22.5 15l119-50 110 190-103 78q1 7 1 13.5v27q0 6.5-2 13.5l103 78-110 190-118-50q-11 8-23 15t-24 12L590-80H370Zm70-80h79l14-106q31-8 57.5-23.5T639-327l99 41 39-68-86-65q5-14 7-29.5t2-31.5q0-16-2-31.5t-7-29.5l86-65-39-68-99 42q-22-23-48.5-38.5T533-694l-13-106h-79l-14 106q-31 8-57.5 23.5T321-633l-99-41-39 68 86 64q-5 15-7 30t-2 32q0 16 2 31t7 30l-86 65 39 68 99-42q22 23 48.5 38.5T427-266l13 106Zm42-180q58 0 99-41t41-99q0-58-41-99t-99-41q-59 0-99.5 41T342-480q0 58 40.5 99t99.5 41Zm-2-140Z" />
+    </svg></button>
+<button onclick="openFullscreen()"
+    style="position: fixed; left: 96px; top: 16px; width: 48px; height: 48px; border-radius: 24px; background-color: #212121;">
+    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e8eaed">
+        <path
+            d="M120-120v-200h80v120h120v80H120Zm520 0v-80h120v-120h80v200H640ZM120-640v-200h200v80H200v120h-80Zm640 0v-120H640v-80h200v200h-80Z" />
+    </svg></button>
 
+<marquee class="text" scrollamount="50"></marquee>
+
+<div class="settings">
+    <div class="header" style="display: flex;flex-direction: row-reverse;">
+        <button id="close-settings" onclick="closeSettings()">
+            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e8eaed">
+                <path
+                    d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z" />
+            </svg>
+        </button>
+    </div>
+    <div style="display: flex;flex-direction: column;gap: 16px;">
+        <div style="display: flex;flex-direction: column; gap: 12px;">
+            <label for="font-size-input">Metin Boyutu</label>
+            <input id="font-size-input" type="number" placeholder="Metin Boyutu" value="180">
+        </div>
+    </div>
+</div>
 <script>
-    let num = window.prompt("sometext","Telefon Numarası Gir");
+    let num = window.prompt("sometext", "Telefon Numarası Gir");
     if (num == null || num == "") {
         text = "User cancelled the prompt.";
     } else {
         const div = document.querySelector(".text")
         div.textContent = num
     }
+
+    function showSettings() {
+        document.querySelector(".settings").style.display = "block"
+    }
+
+    function closeSettings() {
+        document.querySelector(".settings").style.display = "none"
+    }
+
+    function openFullscreen() {
+        var elem = document.documentElement;
+
+        if (elem.requestFullscreen) {
+            elem.requestFullscreen();
+        } else if (elem.webkitRequestFullscreen) { /* Safari */
+            elem.webkitRequestFullscreen();
+        } else if (elem.msRequestFullscreen) { /* IE11 */
+            elem.msRequestFullscreen();
+        }
+    }
+
+    const fontSizeInput = document.querySelector("#font-size-input")
+
+    fontSizeInput.addEventListener("input", () => {
+        console.log(fontSizeInput.value)
+        document.querySelector(".text").style.fontSize = fontSizeInput.value
+    })
+
+    const speedInput = document.querySelector("#speed-input")
+
 
 </script>
